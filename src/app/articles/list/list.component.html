@@ -1,0 +1,38 @@
+<a routerLink="/articles/new" class="btn btn-primary my-3">New article</a>
+
+<div class="form-inline my-lg-0">
+  <input #query (keyup)="filterArticles(query.value)" class="form-control my-3 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+</div>
+
+
+<table class="table table-striped" [mfData]="filteredArticles" #mf="mfDataTable" [mfRowsOnPage]="5">
+  <thead>
+  <tr>
+    <th style="width: auto">
+      <mfDefaultSorter by="title"><a>Title</a></mfDefaultSorter>
+    </th>
+    <th style="width: auto">
+      <mfDefaultSorter by="createdAt">Created on</mfDefaultSorter>
+    </th>
+    <th style="width: auto">
+      <mfDefaultSorter by="updatedAt">Last updated</mfDefaultSorter>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let article of mf.data">
+    <td><a routerLink="/articles/detail/{{article._id}}">{{article.title}}</a></td>
+    <td>{{article.createdAt | date:'MMM d, yyyy'}} at {{article.createdAt | date:'HH:mm'}}</td>
+    <td>{{article.updatedAt | date:'MMM d, yyyy'}} at {{article.updatedAt | date:'HH:mm'}}</td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td class="align-content-center" colspan="4">
+      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+
+

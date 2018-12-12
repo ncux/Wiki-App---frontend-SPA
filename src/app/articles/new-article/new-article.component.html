@@ -1,0 +1,38 @@
+
+<div class="row">
+
+  <div class="col-md-6">
+    <form [formGroup]="articleForm">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input  id="title" formControlName="title" #title class="form-control" required>
+        <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+          Title is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <div class="input-group-prepend">
+          <textarea formControlName="content" #content id="content" class="form-control" required></textarea>
+        </div>
+        <div *ngIf="content.touched && content.invalid" class="alert alert-danger">
+          <div *ngIf="content.errors.required">Price is required</div>
+          <div *ngIf="content.errors.min">Price must be a minimum of 0</div>
+        </div>
+      </div>
+
+
+      <button [disabled]="articleForm.pristine || articleForm.invalid" type="submit" (click)="addArticle(title.value, content.value)">
+        Add
+      </button>
+    </form>
+
+    <button (click)="viewAllArticles()" class="btn btn-info my-3">View articles</button>
+  </div>
+
+
+
+</div>
+

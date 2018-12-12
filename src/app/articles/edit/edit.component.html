@@ -1,0 +1,32 @@
+
+<div class="row">
+
+  <div class="col-md-6">
+    <form [formGroup]="updateForm">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input  id="title" formControlName="title" #title class="form-control" required>
+        <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+          Title is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <input formControlName="content" #content id="content" class="form-control" required>
+        <div *ngIf="content.touched && content.invalid" class="alert alert-danger">
+          <div *ngIf="content.errors.required">Content is required</div>
+        </div>
+      </div>
+
+      <button [disabled]="updateForm.pristine || updateForm.invalid" type="submit" (click)="updateArticle(title.value, content.value)">
+        Save
+      </button>
+
+    </form>
+
+  </div>
+
+ </div>
+

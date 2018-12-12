@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header pt-3 p-1">
+    <h5 class="card-title p-0 ml-3">{{article.title}}</h5>
+  </div>
+  <div class="card-body">
+
+    <p class="card-text">{{article.content}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    <small>Created on {{article.createdAt | date:'MMM d, yyyy'}} at {{article.createdAt | date:'HH:mm'}}</small> <br>
+    <small>Last updated {{article.updatedAt | date:'MMM d, yyyy'}} at {{article.updatedAt | date:'HH:mm'}}</small> <br>
+    <a (click)="editArticle(article._id)" class="btn btn-sm btn-link btn-info mt-3">Edit</a>
+    <a (click)="deleteArticle(article._id)" class="btn btn-sm btn-link btn-danger mt-3 ml-5">Delete</a>
+  </div>
+
+</div>
+
+<a routerLink="/articles" class="btn btn-primary mt-5">Back to all articles</a>
+
